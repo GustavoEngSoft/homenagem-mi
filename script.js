@@ -27,3 +27,30 @@ function showOnScroll() {
 
 window.addEventListener("scroll", showOnScroll);
 showOnScroll();
+
+const music = document.getElementById("background-music");
+
+// Iniciar timeline + música
+startBtn.addEventListener("click", () => {
+  startScreen.classList.add("fade-out");
+
+  setTimeout(() => {
+    sections.forEach(sec => sec.classList.add("show"));
+  }, 600);
+
+  // Iniciar trilha sonora após clique
+  music.volume = 0.6;
+  music.play();
+});
+
+// Pausar música quando qualquer vídeo começar
+document.querySelectorAll("video").forEach(video => {
+  video.addEventListener("play", () => {
+    music.pause();
+  });
+
+  // Retomar música quando o vídeo acabar
+  video.addEventListener("ended", () => {
+    music.play();
+  });
+});
