@@ -54,3 +54,33 @@ document.querySelectorAll("video").forEach(video => {
     music.play();
   });
 });
+
+function createHeart() {
+  const container = document.getElementById("heart-rain");
+
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText = "💖";
+
+  // posição horizontal aleatória
+  heart.style.left = Math.random() * 100 + "vw";
+
+  // tamanho aleatório
+  const size = Math.random() * (40 - 15) + 15;
+  heart.style.fontSize = size + "px";
+
+  // duração aleatória
+  const duration = Math.random() * (5 - 2) + 2;
+  heart.style.animationDuration = duration + "s";
+
+  container.appendChild(heart);
+
+  // remover o coração ao final da animação
+  setTimeout(() => {
+    heart.remove();
+  }, duration * 1000);
+}
+
+// cria um coração novo a cada 250ms
+setInterval(createHeart, 250);
+
